@@ -1,5 +1,7 @@
-const container = document.querySelector(".container");
+
 function createCanvas(canvasSize){    
+    console.log("Creating new canvas");
+    const container = document.querySelector(".container");
     for(let i = 0; i< canvasSize; i++){
         let itemContainer = document.createElement("div");
         itemContainer.classList.add("square-item-container");
@@ -10,20 +12,41 @@ function createCanvas(canvasSize){
             itemContainer.appendChild(square);
         }
     }
+    draw();
 }
-
-createCanvas(16);
-
-const squares = document.querySelectorAll('.square-item');
-
 function draw(){
+    const squares = document.querySelectorAll('.square-item');
+    
     squares.forEach((square) => {
         square.addEventListener("mouseover", () => {
-            square.classList.add("draw")
+            square.classList.add("draw");
         }
         );
-        console.log('drawn over');
+    });
+    
+}
+
+function destroyCanvas(){
+    const squares = document.querySelectorAll('.square-item');
+    const squareContainers  = document.querySelectorAll(".square-item-container");
+    squares.forEach((square) => {
+        square.remove();
+    });
+    squareContainers.forEach((square) => {
+        square.remove();
     });
 }
 
-draw();
+
+function generateNewCanvas(){
+    const newCanvasBtn = document.querySelector('#new-canvas-btn');
+    newCanvasBtn.addEventListener("click", () => {
+        console.log("new canvas clicked");
+        canvasSize = prompt("Enter Canvas Size: ");
+        destroyCanvas();
+        createCanvas(canvasSize);
+        draw();
+    });
+}
+createCanvas(16);
+generateNewCanvas();
