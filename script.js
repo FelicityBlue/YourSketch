@@ -11,4 +11,19 @@ function createCanvas(canvasSize){
         }
     }
 }
+
 createCanvas(16);
+
+const squares = document.querySelectorAll('.square-item');
+
+function draw(){
+    squares.forEach((square) => {
+        square.addEventListener("mouseover", () => {
+            square.classList.add("draw")
+        }
+        );
+        console.log('drawn over');
+    });
+}
+
+draw();
