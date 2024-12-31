@@ -1,0 +1,21 @@
+#title{
+    font-size: 2.5rem;
+    text-align: center;
+    margin:2rem;
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.square-item-container{
+    display: flex;
+    flex-direction: column;
+}
+.square-item{
+    height: 1rem;
+    width: 1rem;
+    border:black;
+    border-width: 0.005rem;
+    border-style: solid;
+}
