@@ -16,7 +16,11 @@ function createCanvas(canvasSize){
 }
 function draw(color){
     const squares = document.querySelectorAll('.square-item');
-    
+    const drawBtn = document.getElementById('draw-btn');
+    const eraserBtn = document.getElementById('eraser-btn');
+
+    drawBtn.classList.add("current-mode");
+    eraserBtn.classList.remove("current-mode");
     squares.forEach((square) => {
         square.addEventListener("click", () => {
             square.style.background = color;
@@ -73,8 +77,11 @@ function clearCanvas(){
 function erase(){
     const eraserBtn = document.getElementById('eraser-btn');
     const squares = document.querySelectorAll('.square-item');
+    const drawBtn = document.getElementById('draw-btn');
     
     eraserBtn.addEventListener("click", () => {
+        eraserBtn.classList.add("current-mode");
+        drawBtn.classList.remove("current-mode");
         squares.forEach((square) => {
         square.addEventListener("click", () => {
             square.style.background = "white";

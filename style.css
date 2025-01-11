@@ -6,10 +6,13 @@
 .button{
     padding: 0.5rem 0.8rem;
     margin-bottom: 1rem;
-    background-color: #D291BC;
+    background-color: #FEC6DF;
     border-width: 0;
     border-radius: 0.5rem;
     cursor: pointer;
+}
+.current-mode{
+    background-color: #DEB3E0;
 }
 #color-picker{
     width: 4rem;
