@@ -3,15 +3,35 @@
     text-align: center;
     margin:2rem;
 }
-#new-canvas-btn{
-    padding: 0.25rem 0.75rem;
+.button{
+    padding: 0.5rem 0.8rem;
     margin-bottom: 1rem;
+    background-color: #D291BC;
+    border-width: 0;
+    border-radius: 0.5rem;
+    cursor: pointer;
 }
-.container{
+#color-picker{
+    width: 5rem;
+    height: 5rem;
+    border: none;
+    border-radius: 25%;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    background: transparent;
+}
+.clickers-container, .container{
     display: flex;
     align-items: center;
     justify-content: center;
 }
+.clickers-container{
+    flex-direction: row;
+    gap: 0.5rem;
+    margin:1rem;
+}
+
 .square-item-container{
     display: flex;
     flex-direction: column;
@@ -22,7 +42,4 @@
     border:black;
     border-width: 0.005rem;
     border-style: solid;
-}
-.draw{
-    background-color: coral;
 }
