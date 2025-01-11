@@ -2,15 +2,14 @@
 function createCanvas(canvasSize){    
     console.log("Creating new canvas");
     const container = document.querySelector(".container");
-    for(let i = 0; i< canvasSize; i++){
-        let itemContainer = document.createElement("div");
-        itemContainer.classList.add("square-item-container");
-        container.appendChild(itemContainer);
-        for(let j = 0; j < canvasSize; j++){
-            let square = document.createElement("div");
-            square.classList.add("square-item");
-            itemContainer.appendChild(square);
-        }
+
+    container.style.setProperty('--canvas-size', canvasSize);
+    container.innerHTML = '';
+
+    for(let i = 0; i< (canvasSize*canvasSize); i++){
+        let square = document.createElement("div");
+        square.classList.add("square-item");
+        container.appendChild(square);
     }
     const colorPicker = document.getElementById('color-picker');
     draw(colorPicker.value);
@@ -19,23 +18,23 @@ function draw(color){
     const squares = document.querySelectorAll('.square-item');
     
     squares.forEach((square) => {
-        square.addEventListener("mouseover", () => {
+        square.addEventListener("click", () => {
             square.style.background = color;
         
+        });
+        // dragging
+        square.addEventListener("mouseover", (e) => {
+            if (e.buttons === 1) { 
+                square.style.background = color;
+            }
         });
     });
     
 }
 
 function destroyCanvas(){
-    const squares = document.querySelectorAll('.square-item');
-    const squareContainers  = document.querySelectorAll(".square-item-container");
-    squares.forEach((square) => {
-        square.remove();
-    });
-    squareContainers.forEach((square) => {
-        square.remove();
-    });
+    const container = document.querySelector('.container');
+    container.innerHTML = '';
 }
 
 
@@ -46,7 +45,6 @@ function generateNewCanvas(){
         canvasSize = prompt("Enter Canvas Size: ");
         destroyCanvas();
         createCanvas(canvasSize);
-        draw();
     });
 }
 
@@ -56,6 +54,34 @@ function applyColorPicker(){
         draw(colorPicker.value);
     });
 }
+
+function clearCanvas(){
+    const clearBtn = document.getElementById('clear-btn');
+    const squares = document.querySelectorAll('.square-item');
+
+    clearBtn.addEventListener("click", () => {
+        squares.forEach((square) => {
+            square.style.background = "white";
+        });
+    });
+    
+}
+
+function erase(){
+    const eraserBtn = document.getElementById('eraser-btn');
+    const squares = document.querySelectorAll('.square-item');
+    
+    eraserBtn.addEventListener("click", () => {
+        squares.forEach((square) => {
+            square.addEventListener("mouseover", () => {
+                square.style.background = "white";
+        
+            });
+        });
+    });
+}
 createCanvas(16);
 generateNewCanvas();
 applyColorPicker();
+clearCanvas();
+erase();
