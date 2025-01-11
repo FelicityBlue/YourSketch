@@ -12,16 +12,17 @@ function createCanvas(canvasSize){
             itemContainer.appendChild(square);
         }
     }
-    draw();
+    const colorPicker = document.getElementById('color-picker');
+    draw(colorPicker.value);
 }
-function draw(){
+function draw(color){
     const squares = document.querySelectorAll('.square-item');
     
     squares.forEach((square) => {
         square.addEventListener("mouseover", () => {
-            square.classList.add("draw");
-        }
-        );
+            square.style.background = color;
+        
+        });
     });
     
 }
@@ -48,5 +49,13 @@ function generateNewCanvas(){
         draw();
     });
 }
+
+function applyColorPicker(){
+    const colorPicker = document.getElementById('color-picker');
+    colorPicker.addEventListener('input', () =>{
+        draw(colorPicker.value);
+    });
+}
 createCanvas(16);
 generateNewCanvas();
+applyColorPicker();
