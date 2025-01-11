@@ -49,6 +49,9 @@
     align-items: center;
 
     aspect-ratio: 1;
+
+    border-width:0.05rem;
+    border-style: solid;
 }
 .square-item{
     background-color: white;
