@@ -42,7 +42,10 @@ function generateNewCanvas(){
     const newCanvasBtn = document.querySelector('#new-canvas-btn');
     newCanvasBtn.addEventListener("click", () => {
         console.log("new canvas clicked");
-        canvasSize = prompt("Enter Canvas Size: ");
+        canvasSize = -1;
+        while(canvasSize < 1 || canvasSize > 100){
+            canvasSize = prompt("Enter Canvas Size(1-100): ");
+        }
         destroyCanvas();
         createCanvas(canvasSize);
     });
@@ -73,11 +76,25 @@ function erase(){
     
     eraserBtn.addEventListener("click", () => {
         squares.forEach((square) => {
-            square.addEventListener("mouseover", () => {
-                square.style.background = "white";
+        square.addEventListener("click", () => {
+            square.style.background = "white";
         
-            });
         });
+        // dragging
+        square.addEventListener("mouseover", (e) => {
+            if (e.buttons === 1) { 
+                square.style.background = "white";
+            }
+        });
+    });
+    });
+}
+function drawBtn(){
+    const drawBtn = document.getElementById('draw-btn');
+    const colorPicker = document.getElementById('color-picker');
+
+    drawBtn.addEventListener("click", () => {
+        draw(colorPicker.value);
     });
 }
 createCanvas(16);
