@@ -14,17 +14,14 @@ function createCanvas(canvasSize){
     const colorPicker = document.getElementById('color-picker');
     draw(colorPicker.value);
 }
-function draw(color){
+function draw(color){ 
     const squares = document.querySelectorAll('.square-item');
     const drawBtn = document.getElementById('draw-btn');
-    const eraserBtn = document.getElementById('eraser-btn');
-
+    
     drawBtn.classList.add("current-mode");
-    eraserBtn.classList.remove("current-mode");
     squares.forEach((square) => {
         square.addEventListener("click", () => {
             square.style.background = color;
-        
         });
         // dragging
         square.addEventListener("mouseover", (e) => {
@@ -75,11 +72,14 @@ function clearCanvas(){
 }
 
 function erase(){
+    
     const eraserBtn = document.getElementById('eraser-btn');
     const squares = document.querySelectorAll('.square-item');
     const drawBtn = document.getElementById('draw-btn');
     
     eraserBtn.addEventListener("click", () => {
+        console.log("Eraser Button is Pressed!");
+        
         eraserBtn.classList.add("current-mode");
         drawBtn.classList.remove("current-mode");
         squares.forEach((square) => {
@@ -97,10 +97,15 @@ function erase(){
     });
 }
 function drawBtn(){
-    const drawBtn = document.getElementById('draw-btn');
     const colorPicker = document.getElementById('color-picker');
+    const drawBtn = document.getElementById('draw-btn');
+    const eraserBtn = document.getElementById('eraser-btn');
 
+    
     drawBtn.addEventListener("click", () => {
+        drawBtn.classList.add("current-mode");
+        eraserBtn.classList.remove("current-mode");
+        console.log("Draw Button is Pressed!");
         draw(colorPicker.value);
     });
 }
@@ -109,3 +114,4 @@ generateNewCanvas();
 applyColorPicker();
 clearCanvas();
 erase();
+drawBtn();
